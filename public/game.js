@@ -20,6 +20,10 @@
   const leaderboardEl = document.getElementById("leaderboard");
   const rankingNote = document.getElementById("ranking-note");
   const monetization = document.getElementById("monetization");
+  const showWorldRankingButton = document.getElementById("show-world-ranking");
+  const gameoverRanking = document.getElementById("gameover-ranking");
+  const gameoverLeaderboard = document.getElementById("gameover-leaderboard");
+  const gameoverRankingNote = document.getElementById("gameover-ranking-note");
   const pixKeyEl = document.getElementById("pix-key");
   const copyPixButton = document.getElementById("copy-pix");
   const pixStatus = document.getElementById("pix-status");
@@ -110,6 +114,8 @@
     overlayText.textContent = `Você fez ${score} ponto${score === 1 ? "" : "s"}. Tente bater seu recorde!`;
     startButton.textContent = "JOGAR NOVAMENTE →";
     overlayCard.insertBefore(submitPanel, monetization);
+    showWorldRankingButton.hidden = false;
+    gameoverRanking.classList.add("hidden");
     overlay.classList.remove("hidden");
     monetization.classList.remove("hidden");
     lastScore = score;
@@ -196,26 +202,41 @@
   }
   async function loadLeaderboard() {
     rankingNote.textContent = "Buscando pontuações...";
+    gameoverRankingNote.textContent = "Buscando pontuações...";
     try {
       const response = await fetch("/api/leaderboard");
       if (!response.ok) throw new Error("API indisponível");
       const data = await response.json();
-      leaderboardEl.replaceChildren();
-      if (!data.scores?.length) {
-        leaderboardEl.innerHTML = '<li class="ranking-empty">Ainda não há pontuações. Seja o primeiro!</li>';
-      } else {
-        data.scores.forEach((entry,index) => {
+      const lists = [leaderboardEl, gameoverLeaderboard];
+      lists.forEach(list => {
+        list.replaceChildren();
+        if (!data.scores?.length) {
           const li = document.createElement("li");
-          const rank = document.createElement("span"); rank.className="rank-number"; rank.textContent=String(index+1).padStart(2,"0");
-          const name = document.createElement("span"); name.className="rank-name"; name.textContent=entry.name;
-          const points = document.createElement("strong"); points.className="rank-score"; points.textContent=entry.score;
-          li.append(rank,name,points); leaderboardEl.append(li);
-        });
-      }
+          li.className = "ranking-empty";
+          li.textContent = "Ainda não há pontuações. Seja o primeiro!";
+          list.append(li);
+        } else {
+          data.scores.forEach((entry,index) => {
+            const li = document.createElement("li");
+            const rank = document.createElement("span"); rank.className="rank-number"; rank.textContent=String(index+1).padStart(2,"0");
+            const name = document.createElement("span"); name.className="rank-name"; name.textContent=entry.name;
+            const points = document.createElement("strong"); points.className="rank-score"; points.textContent=entry.score;
+            li.append(rank,name,points); list.append(li);
+          });
+        }
+      });
       rankingNote.textContent = "Ranking global atualizado.";
+      gameoverRankingNote.textContent = "Ranking mundial atualizado.";
     } catch (_) {
-      leaderboardEl.innerHTML = '<li class="ranking-empty">Ranking online ainda não configurado.</li>';
-      rankingNote.textContent = "Configure o banco D1 seguindo o README para ativar o ranking.";
+      [leaderboardEl, gameoverLeaderboard].forEach(list => {
+        list.replaceChildren();
+        const li = document.createElement("li");
+        li.className = "ranking-empty";
+        li.textContent = "Não foi possível carregar o ranking online.";
+        list.append(li);
+      });
+      rankingNote.textContent = "Verifique a conexão e tente novamente.";
+      gameoverRankingNote.textContent = "Verifique a conexão e tente novamente.";
     }
   }
   async function submitScore() {
@@ -274,6 +295,13 @@
     if (soundOn) sound("tap");
   });
   submitButton.addEventListener("click", submitScore);
+  showWorldRankingButton.addEventListener("click", () => {
+    gameoverRanking.classList.remove("hidden");
+    loadLeaderboard();
+  });
+  document.getElementById("close-world-ranking").addEventListener("click", () => {
+    gameoverRanking.classList.add("hidden");
+  });
   if (PIX_KEY.trim()) {
     pixKeyEl.textContent = PIX_KEY.trim();
     copyPixButton.disabled = false;
