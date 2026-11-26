@@ -693,3 +693,42 @@ body {
     padding-inline: 10px;
   }
 }
+
+
+/* Controles maiores e botão de pausa afastado para evitar toques acidentais. */
+.dpad {
+  width: min(230px, 68vw);
+  height: 174px;
+  gap: 8px;
+}
+.dpad .dir {
+  min-width: 58px;
+  min-height: 54px;
+  font-size: 29px;
+  touch-action: manipulation;
+}
+.pause-game-button {
+  margin-top: 42px;
+  margin-bottom: 8px;
+  min-height: 44px;
+}
+@media (max-width: 760px) {
+  .app-shell.is-playing .dpad {
+    width: min(230px, 68vw);
+    height: 174px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    gap: 8px;
+  }
+  .app-shell.is-playing .dir {
+    min-width: 58px;
+    min-height: 54px;
+    font-size: 29px;
+  }
+  .app-shell.is-playing .pause-game-button {
+    width: min(190px, 58vw);
+    min-height: 44px;
+    margin-top: 42px;
+    margin-bottom: 10px;
+  }
+}
