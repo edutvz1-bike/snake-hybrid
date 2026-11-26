@@ -236,3 +236,45 @@ body {
 .exit-button:active {
   background: #57302a;
 }
+
+
+/* Reduz bastante a faixa HYBRID / 01 para liberar espaço ao botão Jogar. */
+.screen-topline {
+  padding: 0 3px 3px;
+  font-size: 6px;
+  line-height: 1;
+  letter-spacing: .08em;
+  min-height: 8px;
+}
+.screen-frame {
+  padding-top: 6px;
+}
+@media (max-width: 760px) {
+  .screen-topline {
+    padding-bottom: 2px;
+    font-size: 5px;
+    min-height: 7px;
+  }
+  .overlay {
+    padding: 6px;
+  }
+  .overlay-card {
+    padding: 12px 12px;
+  }
+  .overlay-icon {
+    font-size: 16px;
+  }
+  .overlay-card h2 {
+    margin: 4px 0;
+    font-size: 20px;
+  }
+  .overlay-card p:not(.overlay-kicker) {
+    margin: 5px 0;
+    font-size: 10px;
+    line-height: 1.3;
+  }
+  .primary-button {
+    margin-top: 5px;
+    padding: 11px 14px;
+  }
+}
