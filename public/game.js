@@ -329,6 +329,13 @@
     }
   });
   document.getElementById("refresh-ranking").addEventListener("click",loadLeaderboard);
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/service-worker.js").catch(() => {
+        console.warn("Não foi possível ativar o modo offline neste navegador.");
+      });
+    });
+  }
   loadLeaderboard();
   reset();
 })();
