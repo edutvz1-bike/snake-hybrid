@@ -463,3 +463,72 @@ body {
     padding: 9px;
   }
 }
+
+
+/* Game Over: painel independente da moldura do tabuleiro.
+   Usa a tela inteira do dispositivo para nunca cortar a doação PIX. */
+.overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  align-items: start;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: max(16px, env(safe-area-inset-top)) 12px max(20px, env(safe-area-inset-bottom));
+  background: #071009ed;
+  -webkit-overflow-scrolling: touch;
+}
+.overlay.hidden {
+  display: none !important;
+}
+.overlay-card {
+  width: min(100%, 440px);
+  max-height: none !important;
+  height: auto;
+  margin: auto;
+  overflow: visible !important;
+  padding: 20px;
+}
+.monetization {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.donation-box {
+  order: 0;
+  width: 100%;
+}
+.ad-slot {
+  order: 1;
+}
+.pix-row {
+  align-items: stretch;
+}
+.pix-row code {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+@media (max-width: 760px) {
+  .overlay {
+    padding: max(12px, env(safe-area-inset-top)) 10px max(16px, env(safe-area-inset-bottom));
+  }
+  .overlay-card {
+    width: min(100%, 420px);
+    padding: 16px 13px;
+  }
+  .donation-box {
+    padding: 12px;
+  }
+  .pix-row code {
+    font-size: 11px;
+  }
+  .pix-row button {
+    flex: 0 0 auto;
+    min-width: 76px;
+    min-height: 36px;
+  }
+}
