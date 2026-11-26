@@ -374,3 +374,58 @@ body {
     font-size: 9px;
   }
 }
+
+
+/* Durante a partida no celular, mostrar somente o tabuleiro e os controles. */
+@media (max-width: 760px) {
+  .app-shell.is-playing .submit-panel-top,
+  .app-shell.is-playing .stats-row,
+  .app-shell.is-playing .screen-topline,
+  .app-shell.is-playing .screen-bottom {
+    display: none !important;
+  }
+
+  .app-shell.is-playing {
+    min-height: 100dvh;
+    padding: max(6px, env(safe-area-inset-top)) 8px max(8px, env(safe-area-inset-bottom));
+  }
+
+  .app-shell.is-playing .game-layout,
+  .app-shell.is-playing .game-column {
+    display: block;
+    width: 100%;
+  }
+
+  .app-shell.is-playing .screen-frame {
+    width: min(100%, calc(100dvh - 235px));
+    margin-inline: auto;
+    padding: 5px;
+  }
+
+  .app-shell.is-playing .screen-bezel {
+    width: 100%;
+    margin: 0;
+    border-width: 5px;
+  }
+
+  .app-shell.is-playing .controls-area {
+    width: min(100%, 420px);
+    margin: 8px auto 0;
+    padding: 8px 10px;
+  }
+
+  .app-shell.is-playing .dpad {
+    width: min(190px, 58vw);
+    height: 138px;
+    margin: 8px auto 2px;
+    gap: 6px;
+  }
+
+  .app-shell.is-playing .dir {
+    font-size: 23px;
+  }
+
+  .app-shell.is-playing .mobile-tip {
+    display: none;
+  }
+}
