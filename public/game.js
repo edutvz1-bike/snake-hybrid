@@ -20,7 +20,7 @@
   const pixStatus = document.getElementById("pix-status");
 
   // Cadastre a chave PIX aqui antes de publicar a monetização.
-  const PIX_KEY = "";
+  const PIX_KEY = "53c3f6ec-93e4-4287-983f-ea927c897f61";
 
   const CELLS = 24;
   const CELL = canvas.width / CELLS;
