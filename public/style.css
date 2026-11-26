@@ -96,3 +96,18 @@ footer { display:flex; justify-content:space-between; gap:10px; margin-top:28px;
   footer { font-size:7px; }
 }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
+
+
+/* Monetização: exibida apenas no Game Over e nas transições de fase. */
+.monetization { display:grid; gap:10px; margin-top:16px; text-align:left; }
+.monetization.hidden { display:none; }
+.ad-slot { min-height:58px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; padding:9px; border:1px dashed #60745c; border-radius:7px; color:#9daf98; background:#0e1711; font-size:10px; }
+.ad-label { color:#829582; font-size:8px; font-weight:900; letter-spacing:.16em; }
+.donation-box { padding:11px; border:1px solid #405542; border-radius:8px; background:#101a13; }
+.donation-box > strong { color:var(--lime); font-size:12px; }
+.donation-box p { margin:6px 0; color:#a9b9a9; font-size:10px; line-height:1.45; }
+.pix-row { display:flex; align-items:center; gap:6px; margin-top:8px; }
+.pix-row code { min-width:0; flex:1; overflow-wrap:anywhere; color:#e6f0e2; font-size:10px; }
+.pix-row button { border:1px solid #6e9656; border-radius:5px; padding:7px 9px; color:#14200f; background:var(--lime); font-size:9px; font-weight:900; }
+.pix-row button:disabled { opacity:.45; cursor:not-allowed; }
+.donation-box .pix-status { min-height:12px; margin-bottom:0; font-size:9px; }
