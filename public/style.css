@@ -199,3 +199,18 @@ footer { display:flex; justify-content:space-between; gap:10px; margin-top:28px;
   .submit-panel-top .panel-heading h2 { font-size: 15px; }
   .submit-panel-top .submit-row button { padding-inline: 10px; font-size: 8px; }
 }
+
+
+/* Facilita a rolagem vertical por toque em celulares. */
+html, body {
+  min-height: 100%;
+  overflow-y: auto;
+  overscroll-behavior-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+body {
+  touch-action: pan-y;
+}
+.screen-bezel {
+  touch-action: pan-y;
+}
