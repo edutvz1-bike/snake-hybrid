@@ -214,3 +214,25 @@ body {
 .screen-bezel {
   touch-action: pan-y;
 }
+
+
+/* Botão para sair da área ampliada do jogo sem perder a partida. */
+.controls-hint {
+  align-items: center;
+  gap: 8px;
+}
+.exit-button {
+  margin-left: auto;
+  border: 1px solid #8a554d;
+  border-radius: 6px;
+  padding: 7px 12px;
+  color: #ffd2c9;
+  background: #3a211e;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  touch-action: manipulation;
+}
+.exit-button:active {
+  background: #57302a;
+}
