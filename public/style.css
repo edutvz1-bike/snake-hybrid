@@ -285,3 +285,92 @@ body {
 @media (max-width:760px) {
   .submit-panel-top { padding-top: 9px; }
 }
+
+
+/* Novo quadro compacto de entrada no Ranking Mundial. */
+.submit-panel-top {
+  width: min(100%, 620px);
+  margin: 0 auto 16px;
+  padding: 16px 18px;
+  border: 1px solid #66864b;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1b2b1e, #111a14);
+  box-shadow: 0 8px 24px #0003;
+}
+.submit-panel-top .panel-heading {
+  justify-content: center;
+}
+.submit-panel-top .panel-heading h2 {
+  color: var(--lime);
+  font-size: 18px;
+}
+.ranking-entry-copy {
+  margin: 7px 0 10px;
+  text-align: center;
+  font-size: 12px;
+}
+.ranking-entry-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.ranking-entry-form label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+.ranking-entry-form input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #3b4c3d;
+  border-radius: 7px;
+  padding: 11px 12px;
+  color: var(--text);
+  background: #0c140e;
+  outline: none;
+  font-size: 16px;
+}
+.ranking-entry-form input:focus {
+  border-color: var(--lime-2);
+}
+.ranking-entry-form button {
+  width: 100%;
+  min-height: 42px;
+  border: 0;
+  border-radius: 7px;
+  padding: 10px 14px;
+  color: #14200f;
+  background: var(--lime);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+.ranking-entry-form button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+.ranking-entry-form .submit-status {
+  min-height: 14px;
+  margin: 0;
+  text-align: center;
+  font-size: 10px !important;
+}
+@media (max-width: 760px) {
+  .submit-panel-top {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 13px;
+  }
+  .submit-panel-top .panel-heading h2 {
+    font-size: 16px;
+  }
+  .ranking-entry-copy {
+    font-size: 11px;
+  }
+  .ranking-entry-form button {
+    min-height: 44px;
+    font-size: 9px;
+  }
+}
