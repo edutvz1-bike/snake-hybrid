@@ -287,7 +287,7 @@
   });
   startButton.addEventListener("click", () => { if (paused) pause(); else start(); });
   gameoverExitButton.addEventListener("click", () => {
-    overlay.classList.add("hidden");
+    overlay.classList.remove("hidden");
     monetization.classList.add("hidden");
     gameoverRanking.classList.add("hidden");
     showWorldRankingButton.hidden = true;
