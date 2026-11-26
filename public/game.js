@@ -1,4 +1,5 @@
 (() => {
+  const appShell = document.querySelector(".app-shell");
   const canvas = document.getElementById("game");
   const ctx = canvas.getContext("2d");
   const overlay = document.getElementById("overlay");
@@ -49,6 +50,7 @@
     draw();
   }
   function start() {
+    appShell.classList.add("is-playing");
     if (phaseTransition) {
       phaseTransition = false;
       overlay.classList.add("hidden");
@@ -96,6 +98,7 @@
     draw(); schedule();
   }
   function endGame() {
+    appShell.classList.remove("is-playing");
     running = false; gameOver = true; clearTimeout(timer); stateEl.textContent = "FIM DE JOGO";
     sound("over");
     overlayTitle.textContent = "Fim de jogo!";
@@ -111,6 +114,7 @@
   }
 
   function showPhaseTransition() {
+    appShell.classList.remove("is-playing");
     running = false; phaseTransition = true; clearTimeout(timer);
     stateEl.textContent = "FASE CONCLUÍDA";
     sound("eat");
@@ -228,6 +232,8 @@
   }
 
   document.addEventListener("keydown", event => {
+    const target = event.target;
+    if (target instanceof HTMLElement && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName))) return;
     const keys = {ArrowUp:"up",ArrowDown:"down",ArrowLeft:"left",ArrowRight:"right",w:"up",s:"down",a:"left",d:"right"};
     if (keys[event.key]) { event.preventDefault(); setDirection(keys[event.key]); }
     if (event.code === "Space") { event.preventDefault(); if (running) pause(); }
