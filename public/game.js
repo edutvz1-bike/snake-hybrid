@@ -3,6 +3,9 @@
   const canvas = document.getElementById("game");
   const ctx = canvas.getContext("2d");
   const overlay = document.getElementById("overlay");
+  const overlayCard = overlay.querySelector(".overlay-card");
+  const gameLayout = document.querySelector(".game-layout");
+  const submitPanel = document.getElementById("submit-panel");
   const overlayTitle = document.getElementById("overlay-title");
   const overlayText = document.getElementById("overlay-text");
   const startButton = document.getElementById("start-button");
@@ -51,6 +54,7 @@
     draw();
   }
   function start() {
+    if (submitPanel.parentElement === overlayCard) appShell.insertBefore(submitPanel, gameLayout);
     appShell.classList.add("is-playing");
     if (phaseTransition) {
       phaseTransition = false;
@@ -105,6 +109,7 @@
     overlayTitle.textContent = "Fim de jogo!";
     overlayText.textContent = `Você fez ${score} ponto${score === 1 ? "" : "s"}. Tente bater seu recorde!`;
     startButton.textContent = "JOGAR NOVAMENTE →";
+    overlayCard.insertBefore(submitPanel, monetization);
     overlay.classList.remove("hidden");
     monetization.classList.remove("hidden");
     lastScore = score;
