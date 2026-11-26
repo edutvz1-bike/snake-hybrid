@@ -1,0 +1,21 @@
+{
+  "id": "/",
+  "name": "Snake Hybrid",
+  "short_name": "Snake Hybrid",
+  "description": "Jogo Snake retrô com suporte para jogar offline.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#101812",
+  "theme_color": "#101812",
+  "icons": [
+    {
+      "src": "/snake-hybrid-icon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
