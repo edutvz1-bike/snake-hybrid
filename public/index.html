@@ -46,7 +46,7 @@
                 <p class="overlay-kicker">SNAKE HYBRID</p>
                 <h2 id="overlay-title">Preparado?</h2>
                 <p id="overlay-text">Use as setas ou os controles para começar.</p>
-                <button id="start-button" class="primary-button" type="button">JOGAR AGORA <span>→</span></button>
+                <div class="overlay-actions"><button id="start-button" class="primary-button" type="button">JOGAR AGORA <span>→</span></button><button id="gameover-exit" class="gameover-exit-button" type="button" hidden>SAIR</button></div>
                 <button id="show-world-ranking" class="ranking-view-button" type="button" hidden>VER RANKING MUNDIAL</button>
                 <section id="gameover-ranking" class="gameover-ranking hidden" aria-label="Ranking Mundial">
                   <div class="gameover-ranking-heading">
@@ -88,6 +88,7 @@
             <button class="dir down" data-dir="down" aria-label="Baixo">▼</button>
             <button class="dir right" data-dir="right" aria-label="Direita">▶</button>
           </div>
+          <button id="pause-game" class="pause-game-button" type="button">Ⅱ PAUSAR</button>
           <p class="mobile-tip">No celular, deslize sobre a tela ou use os botões.</p>
         </div>
       </div>
