@@ -47,6 +47,17 @@
                 <h2 id="overlay-title">Preparado?</h2>
                 <p id="overlay-text">Use as setas ou os controles para começar.</p>
                 <button id="start-button" class="primary-button" type="button">JOGAR AGORA <span>→</span></button>
+                <button id="show-world-ranking" class="ranking-view-button" type="button" hidden>VER RANKING MUNDIAL</button>
+                <section id="gameover-ranking" class="gameover-ranking hidden" aria-label="Ranking Mundial">
+                  <div class="gameover-ranking-heading">
+                    <strong>♛ CLASSIFICAÇÃO MUNDIAL</strong>
+                    <button id="close-world-ranking" type="button" aria-label="Fechar ranking">FECHAR ✕</button>
+                  </div>
+                  <ol id="gameover-leaderboard" class="leaderboard">
+                    <li class="ranking-empty">Carregando ranking...</li>
+                  </ol>
+                  <p id="gameover-ranking-note" class="ranking-note" aria-live="polite">Pontuações dos jogadores.</p>
+                </section>
                 <section id="monetization" class="monetization hidden" aria-label="Apoie o Snake Hybrid">
                   <div id="ad-slot" class="ad-slot">
                     <span class="ad-label">PUBLICIDADE</span>
