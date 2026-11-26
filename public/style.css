@@ -567,3 +567,65 @@ body {
   margin: 0;
   font-size: 10px !important;
 }
+
+
+/* Botão e lista do ranking mundial no painel de Game Over. */
+.ranking-view-button {
+  display: block;
+  width: 100%;
+  min-height: 42px;
+  margin: 9px 0 4px;
+  padding: 10px 12px;
+  border: 1px solid #6e9656;
+  border-radius: 7px;
+  color: var(--lime);
+  background: #17251a;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+.ranking-view-button[hidden] {
+  display: none !important;
+}
+.gameover-ranking {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid #536d48;
+  border-radius: 9px;
+  background: #0d1710;
+  text-align: left;
+}
+.gameover-ranking.hidden {
+  display: none !important;
+}
+.gameover-ranking-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: var(--lime);
+  font-size: 10px;
+  letter-spacing: .06em;
+}
+.gameover-ranking-heading button {
+  border: 1px solid #405542;
+  border-radius: 5px;
+  padding: 6px 8px;
+  color: #dce8d9;
+  background: #17251a;
+  font-size: 8px;
+  font-weight: 800;
+}
+.gameover-ranking .leaderboard {
+  max-height: 230px;
+  overflow-y: auto;
+}
+.gameover-ranking .leaderboard li {
+  grid-template-columns: 25px minmax(0,1fr) auto;
+  padding: 8px 0;
+}
+.gameover-ranking .ranking-note {
+  margin: 8px 0 0;
+}
