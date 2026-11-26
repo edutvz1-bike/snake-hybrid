@@ -6,6 +6,7 @@
   const overlayTitle = document.getElementById("overlay-title");
   const overlayText = document.getElementById("overlay-text");
   const startButton = document.getElementById("start-button");
+  const exitButton = document.getElementById("exit-game");
   const scoreEl = document.getElementById("score");
   const bestEl = document.getElementById("best");
   const stateEl = document.getElementById("game-state");
@@ -250,6 +251,18 @@
     touchStart=null;
   });
   startButton.addEventListener("click", () => { if (paused) pause(); else start(); });
+  exitButton.addEventListener("click", () => {
+    if (running && !paused) {
+      paused = true;
+      clearTimeout(timer);
+      stateEl.textContent = "PAUSADO";
+      overlayTitle.textContent = "Partida pausada";
+      overlayText.textContent = "Você saiu da tela do jogo. Toque em CONTINUAR para voltar à partida.";
+      startButton.textContent = "CONTINUAR →";
+      overlay.classList.remove("hidden");
+    }
+    appShell.classList.remove("is-playing");
+  });
   soundButton.addEventListener("click", () => {
     soundOn=!soundOn; soundButton.setAttribute("aria-pressed",String(soundOn));
     soundButton.innerHTML = soundOn ? '♫ <span>SOM ON</span>' : '♫ <span>SOM OFF</span>';
