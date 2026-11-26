@@ -11,7 +11,6 @@
   const startButton = document.getElementById("start-button");
   const gameoverExitButton = document.getElementById("gameover-exit");
   const pauseGameButton = document.getElementById("pause-game");
-  const exitButton = document.getElementById("exit-game");
   const scoreEl = document.getElementById("score");
   const bestEl = document.getElementById("best");
   const stateEl = document.getElementById("game-state");
@@ -301,18 +300,6 @@
   });
   pauseGameButton.addEventListener("click", () => {
     if (running && !paused) pause();
-  });
-  exitButton.addEventListener("click", () => {
-    if (running && !paused) {
-      paused = true;
-      clearTimeout(timer);
-      stateEl.textContent = "PAUSADO";
-      overlayTitle.textContent = "Partida pausada";
-      overlayText.textContent = "Você saiu da tela do jogo. Toque em CONTINUAR para voltar à partida.";
-      startButton.textContent = "CONTINUAR →";
-      overlay.classList.remove("hidden");
-    }
-    appShell.classList.remove("is-playing");
   });
   soundButton.addEventListener("click", () => {
     soundOn=!soundOn; soundButton.setAttribute("aria-pressed",String(soundOn));
