@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101812">
+  <meta name="description" content="Snake Hybrid — o clássico Snake com uma pegada retrô moderna.">
+  <title>Snake Hybrid</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Snake Hybrid início"><span class="brand-mark">S</span><span>SNAKE<span class="brand-accent">HYBRID</span></span></a>
+      <span class="status-pill"><i></i> ARCADE ONLINE</span>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">EDIÇÃO RETRÔ • WEB ARCADE</p>
+      <h1>O clássico está <span>de volta.</span></h1>
+      <p class="intro-copy">Uma viagem à era dos pixels. Pegue a comida, cresça e entre para o ranking.</p>
+    </section>
+
+    <section class="game-layout" aria-label="Jogo Snake">
+      <div class="game-column">
+        <div class="stats-row">
+          <div class="stat-card"><span>PONTUAÇÃO</span><strong id="score">000</strong></div>
+          <div class="stat-card"><span>RECORDE LOCAL</span><strong id="best">000</strong></div>
+          <button id="sound-toggle" class="sound-button" type="button" aria-pressed="true" title="Ativar ou desativar sons">♫ <span>SOM ON</span></button>
+        </div>
+
+        <div class="screen-frame">
+          <div class="screen-topline"><span>HYBRID / 01</span><span id="game-state">PRONTO</span></div>
+          <div class="screen-bezel">
+            <canvas id="game" width="480" height="480" aria-label="Área do jogo Snake"></canvas>
+            <div id="overlay" class="overlay">
+              <div class="overlay-card">
+                <span class="overlay-icon">▦</span>
+                <p class="overlay-kicker">SNAKE HYBRID</p>
+                <h2 id="overlay-title">Preparado?</h2>
+                <p id="overlay-text">Use as setas ou os controles para começar.</p>
+                <button id="start-button" class="primary-button" type="button">JOGAR AGORA <span>→</span></button>
+              </div>
+            </div>
+          </div>
+          <div class="screen-bottom"><span>● POWERED BY PIXELS</span><span>v1.0.0</span></div>
+        </div>
+
+        <div class="controls-area">
+          <div class="controls-hint"><span>CONTROLES</span><span>TECLADO / TOQUE</span></div>
+          <div class="dpad" aria-label="Controles direcionais">
+            <button class="dir up" data-dir="up" aria-label="Cima">▲</button>
+            <button class="dir left" data-dir="left" aria-label="Esquerda">◀</button>
+            <button class="dir down" data-dir="down" aria-label="Baixo">▼</button>
+            <button class="dir right" data-dir="right" aria-label="Direita">▶</button>
+          </div>
+          <p class="mobile-tip">No celular, deslize sobre a tela ou use os botões.</p>
+        </div>
+      </div>
+
+      <aside class="side-column">
+        <section class="panel how-panel">
+          <div class="panel-heading"><span class="panel-icon">⌁</span><h2>Como jogar</h2></div>
+          <p>Guie a cobrinha, coma os pontos e evite bater nas paredes ou no próprio corpo.</p>
+          <div class="key-row"><kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd><span>Mover</span></div>
+          <div class="key-row"><kbd>ESPAÇO</kbd><span>Pausar / continuar</span></div>
+        </section>
+
+        <section class="panel ranking-panel">
+          <div class="panel-heading"><span class="panel-icon trophy">♛</span><h2>Ranking global</h2><span class="live-dot"></span></div>
+          <p class="panel-subtitle">OS MELHORES JOGADORES</p>
+          <ol id="leaderboard" class="leaderboard">
+            <li class="ranking-empty">Carregando ranking...</li>
+          </ol>
+          <button id="refresh-ranking" class="text-button" type="button">ATUALIZAR RANKING ↻</button>
+          <p id="ranking-note" class="ranking-note">O ranking aparece quando o banco online estiver configurado.</p>
+        </section>
+
+        <section class="panel submit-panel">
+          <div class="panel-heading"><span class="panel-icon">✦</span><h2>Entrar no ranking</h2></div>
+          <label for="player-name">SEU NOME</label>
+          <div class="submit-row">
+            <input id="player-name" maxlength="16" placeholder="Ex.: PixelPlayer" autocomplete="nickname">
+            <button id="submit-score" type="button" disabled>ENVIAR</button>
+          </div>
+          <p id="submit-status" class="submit-status">Faça uma partida para enviar sua pontuação.</p>
+        </section>
+      </aside>
+    </section>
+
+    <footer><span>FEITO PARA QUEM SENTE SAUDADE DOS PIXELS.</span><span>© SNAKE HYBRID</span></footer>
+  </main>
+  <script src="/game.js"></script>
+</body>
+</html>
