@@ -429,3 +429,37 @@ body {
     display: none;
   }
 }
+
+
+/* Mantém o resultado e a doação PIX acessíveis em telas pequenas. */
+.overlay {
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  align-items: start;
+}
+.overlay-card {
+  max-height: 100%;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  margin: auto;
+}
+@media (max-width: 760px) {
+  .overlay {
+    padding: 6px;
+  }
+  .overlay-card {
+    width: min(100%, 360px);
+    max-height: 100%;
+    padding: 12px;
+  }
+  .monetization {
+    margin-top: 10px;
+    gap: 8px;
+  }
+  .ad-slot {
+    min-height: 42px;
+  }
+  .donation-box {
+    padding: 9px;
+  }
+}
