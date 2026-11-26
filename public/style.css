@@ -158,3 +158,44 @@ footer { display:flex; justify-content:space-between; gap:10px; margin-top:28px;
     width: 100%;
   }
 }
+
+
+/* Destaque para o acesso ao ranking no topo da página. */
+.submit-panel-top {
+  margin: 0 0 20px;
+  border-color: #66864b;
+  background: linear-gradient(110deg, #1d3020, #142019 70%);
+  box-shadow: 0 8px 28px #0003, inset 3px 0 0 var(--lime);
+}
+.submit-panel-top .panel-heading h2 {
+  color: var(--lime);
+  font-size: 17px;
+}
+.submit-top-content {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: 18px;
+  margin-top: 5px;
+}
+.submit-top-copy p {
+  margin: 4px 0;
+  font-size: 12px;
+}
+.submit-top-form label {
+  display: block;
+  margin: 8px 0 7px;
+}
+.submit-panel-top .submit-row button {
+  padding-inline: 15px;
+  white-space: nowrap;
+}
+.submit-panel-top .submit-status {
+  margin-top: 5px;
+}
+@media (max-width: 760px) {
+  .submit-panel-top { margin-bottom: 14px; padding: 14px; }
+  .submit-top-content { grid-template-columns: 1fr; gap: 4px; }
+  .submit-panel-top .panel-heading h2 { font-size: 15px; }
+  .submit-panel-top .submit-row button { padding-inline: 10px; font-size: 8px; }
+}
