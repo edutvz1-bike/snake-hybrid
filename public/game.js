@@ -9,6 +9,8 @@
   const overlayTitle = document.getElementById("overlay-title");
   const overlayText = document.getElementById("overlay-text");
   const startButton = document.getElementById("start-button");
+  const gameoverExitButton = document.getElementById("gameover-exit");
+  const pauseGameButton = document.getElementById("pause-game");
   const exitButton = document.getElementById("exit-game");
   const scoreEl = document.getElementById("score");
   const bestEl = document.getElementById("best");
@@ -60,6 +62,7 @@
   function start() {
     if (submitPanel.parentElement === overlayCard) appShell.insertBefore(submitPanel, gameLayout);
     appShell.classList.add("is-playing");
+    gameoverExitButton.hidden = true;
     if (phaseTransition) {
       phaseTransition = false;
       overlay.classList.add("hidden");
@@ -118,6 +121,7 @@
     gameoverRanking.classList.add("hidden");
     overlay.classList.remove("hidden");
     monetization.classList.remove("hidden");
+    gameoverExitButton.hidden = false;
     lastScore = score;
     if (score > 0) {
       submitButton.disabled = false;
@@ -133,7 +137,11 @@
     overlayTitle.textContent = "Fase concluída!";
     overlayText.textContent = `Você chegou à fase ${phase}. Prepare-se para o próximo desafio!`;
     startButton.textContent = "CONTINUAR →";
-    monetization.classList.remove("hidden");
+    gameoverExitButton.hidden = true;
+    if (submitPanel.parentElement === overlayCard) appShell.insertBefore(submitPanel, gameLayout);
+    monetization.classList.add("hidden");
+    showWorldRankingButton.hidden = true;
+    gameoverRanking.classList.add("hidden");
     overlay.classList.remove("hidden");
   }
   function pause() {
@@ -144,6 +152,7 @@
       overlayTitle.textContent = "Pausa";
       overlayText.textContent = "Respire. Sua partida está esperando.";
       startButton.textContent = "CONTINUAR →";
+      gameoverExitButton.hidden = true;
       overlay.classList.remove("hidden");
     } else {
       overlay.classList.add("hidden"); stateEl.textContent = "EM JOGO"; schedule();
@@ -277,6 +286,22 @@
     touchStart=null;
   });
   startButton.addEventListener("click", () => { if (paused) pause(); else start(); });
+  gameoverExitButton.addEventListener("click", () => {
+    overlay.classList.add("hidden");
+    monetization.classList.add("hidden");
+    gameoverRanking.classList.add("hidden");
+    showWorldRankingButton.hidden = true;
+    gameoverExitButton.hidden = true;
+    if (submitPanel.parentElement === overlayCard) appShell.insertBefore(submitPanel, gameLayout);
+    overlayTitle.textContent = "Preparado?";
+    overlayText.textContent = "Use as setas ou os controles para começar.";
+    startButton.textContent = "JOGAR AGORA →";
+    stateEl.textContent = "PRONTO";
+    appShell.classList.remove("is-playing");
+  });
+  pauseGameButton.addEventListener("click", () => {
+    if (running && !paused) pause();
+  });
   exitButton.addEventListener("click", () => {
     if (running && !paused) {
       paused = true;
