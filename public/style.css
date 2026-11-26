@@ -76,7 +76,7 @@ canvas { display:block; width:100%; height:auto; aspect-ratio:1; image-rendering
 .ranking-note { margin-bottom:0; font-size:9px!important; }
 .submit-panel label { display:block; margin:13px 0 7px; }
 .submit-row { display:flex; gap:7px; }
-.submit-row input { min-width:0; flex:1; width:100%; border:1px solid #3b4c3d; border-radius:6px; padding:10px; color:var(--text); background:#0c140e; outline:none; font-size:11px; }
+.submit-row input { min-width:0; flex:1; width:100%; border:1px solid #3b4c3d; border-radius:6px; padding:10px; color:var(--text); background:#0c140e; outline:none; font-size:16px; }
 .submit-row input:focus { border-color:var(--lime-2); }
 .submit-row button { border:0; border-radius:6px; padding:0 12px; color:#14200f; background:var(--lime); font-size:9px; font-weight:900; }
 .submit-row button:disabled { opacity:.4; cursor:not-allowed; }
@@ -111,3 +111,19 @@ footer { display:flex; justify-content:space-between; gap:10px; margin-top:28px;
 .pix-row button { border:1px solid #6e9656; border-radius:5px; padding:7px 9px; color:#14200f; background:var(--lime); font-size:9px; font-weight:900; }
 .pix-row button:disabled { opacity:.45; cursor:not-allowed; }
 .donation-box .pix-status { min-height:12px; margin-bottom:0; font-size:9px; }
+
+
+/* Modo de partida no celular: área de jogo e comandos ampliados. */
+@media (max-width:760px) {
+  .app-shell.is-playing { padding:8px 8px 16px; }
+  .app-shell.is-playing .topbar,
+  .app-shell.is-playing .intro,
+  .app-shell.is-playing .side-column,
+  .app-shell.is-playing footer { display:none; }
+  .app-shell.is-playing .game-layout { max-width:none; width:100%; margin:0; gap:10px; }
+  .app-shell.is-playing .screen-frame { padding:6px; }
+  .app-shell.is-playing .screen-bezel { border-width:6px; }
+  .app-shell.is-playing .controls-area { margin-top:10px; padding:12px; }
+  .app-shell.is-playing .dpad { width:min(220px, 68vw); height:164px; gap:8px; margin:14px auto 5px; }
+  .app-shell.is-playing .dir { font-size:26px; border-radius:12px; }
+}
