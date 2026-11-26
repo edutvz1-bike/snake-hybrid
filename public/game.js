@@ -14,12 +14,19 @@
   const nameInput = document.getElementById("player-name");
   const leaderboardEl = document.getElementById("leaderboard");
   const rankingNote = document.getElementById("ranking-note");
+  const monetization = document.getElementById("monetization");
+  const pixKeyEl = document.getElementById("pix-key");
+  const copyPixButton = document.getElementById("copy-pix");
+  const pixStatus = document.getElementById("pix-status");
+
+  // Cadastre a chave PIX aqui antes de publicar a monetização.
+  const PIX_KEY = "";
 
   const CELLS = 24;
   const CELL = canvas.width / CELLS;
   const STORAGE_KEY = "snake-hybrid-best-v1";
   let snake, food, direction, nextDirection, score, best = Number(localStorage.getItem(STORAGE_KEY) || 0);
-  let running = false, paused = false, gameOver = false, timer = null, soundOn = true;
+  let running = false, paused = false, gameOver = false, phaseTransition = false, phase = 1, timer = null, soundOn = true;
   let audioContext = null, lastScore = 0, touchStart = null;
 
   bestEl.textContent = formatScore(best);
@@ -35,14 +42,23 @@
   function reset() {
     snake = [{x:11,y:12},{x:10,y:12},{x:9,y:12},{x:8,y:12}];
     direction = {x:1,y:0}; nextDirection = {x:1,y:0};
-    score = 0; scoreEl.textContent = formatScore(score);
+    score = 0; phase = 1; phaseTransition = false; scoreEl.textContent = formatScore(score);
     food = randomFood(); gameOver = false; paused = false;
     lastScore = 0; submitButton.disabled = true;
     submitStatus.textContent = "Faça uma partida para enviar sua pontuação.";
     draw();
   }
   function start() {
+    if (phaseTransition) {
+      phaseTransition = false;
+      overlay.classList.add("hidden");
+      monetization.classList.add("hidden");
+      running = true; paused = false; stateEl.textContent = "EM JOGO";
+      schedule();
+      return;
+    }
     if (gameOver || !snake) reset();
+    monetization.classList.add("hidden");
     overlay.classList.add("hidden");
     running = true; paused = false; stateEl.textContent = "EM JOGO";
     schedule();
@@ -70,6 +86,12 @@
         best = score; localStorage.setItem(STORAGE_KEY, String(best));
         bestEl.textContent = formatScore(best);
       }
+      if (score % 10 === 0) {
+        phase = Math.floor(score / 10) + 1;
+        showPhaseTransition();
+        draw();
+        return;
+      }
     } else snake.pop();
     draw(); schedule();
   }
@@ -80,11 +102,23 @@
     overlayText.textContent = `Você fez ${score} ponto${score === 1 ? "" : "s"}. Tente bater seu recorde!`;
     startButton.textContent = "JOGAR NOVAMENTE →";
     overlay.classList.remove("hidden");
+    monetization.classList.remove("hidden");
     lastScore = score;
     if (score > 0) {
       submitButton.disabled = false;
       submitStatus.textContent = "Boa! Informe seu nome e envie sua pontuação.";
     }
+  }
+
+  function showPhaseTransition() {
+    running = false; phaseTransition = true; clearTimeout(timer);
+    stateEl.textContent = "FASE CONCLUÍDA";
+    sound("eat");
+    overlayTitle.textContent = "Fase concluída!";
+    overlayText.textContent = `Você chegou à fase ${phase}. Prepare-se para o próximo desafio!`;
+    startButton.textContent = "CONTINUAR →";
+    monetization.classList.remove("hidden");
+    overlay.classList.remove("hidden");
   }
   function pause() {
     if (!running || gameOver) return;
@@ -216,6 +250,20 @@
     if (soundOn) sound("tap");
   });
   submitButton.addEventListener("click", submitScore);
+  if (PIX_KEY.trim()) {
+    pixKeyEl.textContent = PIX_KEY.trim();
+    copyPixButton.disabled = false;
+    pixStatus.textContent = "Copie a chave e faça o pagamento pelo aplicativo do seu banco.";
+  }
+  copyPixButton.addEventListener("click", async () => {
+    if (!PIX_KEY.trim()) return;
+    try {
+      await navigator.clipboard.writeText(PIX_KEY.trim());
+      pixStatus.textContent = "Chave PIX copiada! Obrigado por apoiar o projeto. ❤️";
+    } catch (_) {
+      pixStatus.textContent = "Não foi possível copiar automaticamente. Selecione e copie a chave acima.";
+    }
+  });
   document.getElementById("refresh-ranking").addEventListener("click",loadLeaderboard);
   loadLeaderboard();
   reset();
