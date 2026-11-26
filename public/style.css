@@ -629,3 +629,67 @@ body {
 .gameover-ranking .ranking-note {
   margin: 8px 0 0;
 }
+
+
+/* Ações do painel final: jogar novamente e sair lado a lado. */
+.overlay-actions {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 8px;
+  width: 100%;
+  margin-top: 10px;
+}
+.overlay-actions .primary-button {
+  flex: 1 1 auto;
+  margin-top: 0;
+}
+.gameover-exit-button {
+  flex: 0 0 auto;
+  min-width: 76px;
+  border: 1px solid #8a554d;
+  border-radius: 7px;
+  padding: 10px 13px;
+  color: #ffd2c9;
+  background: #3a211e;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+.gameover-exit-button[hidden] {
+  display: none !important;
+}
+
+/* Pausa dedicada logo abaixo dos controles direcionais. */
+.pause-game-button {
+  display: block;
+  width: min(190px, 58vw);
+  min-height: 38px;
+  margin: 10px auto 2px;
+  border: 1px solid #536d48;
+  border-radius: 7px;
+  color: var(--lime);
+  background: #17251a;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .1em;
+}
+.pause-game-button:active {
+  background: #263b29;
+  transform: translateY(1px);
+}
+@media (max-width: 760px) {
+  .app-shell.is-playing .pause-game-button {
+    width: min(190px, 58vw);
+    min-height: 40px;
+    margin-top: 8px;
+  }
+  .overlay-actions .primary-button {
+    padding-inline: 10px;
+    font-size: 9px;
+  }
+  .gameover-exit-button {
+    min-width: 68px;
+    padding-inline: 10px;
+  }
+}
