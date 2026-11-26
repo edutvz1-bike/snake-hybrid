@@ -532,3 +532,38 @@ body {
     min-height: 36px;
   }
 }
+
+
+/* Cadastro no ranking dentro do painel de fim de partida. */
+.overlay-card .submit-panel-top {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 12px 0;
+  padding: 12px;
+  text-align: left;
+}
+.overlay-card .submit-panel-top .panel-heading {
+  justify-content: center;
+}
+.overlay-card .submit-panel-top .panel-heading h2 {
+  font-size: 15px;
+}
+.overlay-card .ranking-entry-form {
+  gap: 7px;
+}
+.overlay-card .ranking-entry-form label {
+  margin: 0;
+  text-align: left;
+}
+.overlay-card .ranking-entry-form input {
+  min-height: 40px;
+}
+.overlay-card .ranking-entry-form button {
+  min-height: 42px;
+  font-size: 9px;
+}
+.overlay-card .ranking-entry-form .submit-status {
+  margin: 0;
+  font-size: 10px !important;
+}
